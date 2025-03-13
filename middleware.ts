@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 // Define protected routes
 const isProtectedRoute = createRouteMatcher([
-  '/'  // protect home page
+    // protect home page
 
 //   '/profile/edit(.*)',  // protect profile edit page
 
