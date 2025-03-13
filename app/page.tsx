@@ -1,6 +1,13 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 import { UserButton, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { CheckCircle, StarIcon, PhoneIcon } from "lucide-react";
@@ -38,29 +45,27 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-24 flex items-center min-h-screen">
-        <div className="grid grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Right Skills for your needs!
+      <div className="relative bg-black text-white">
+        <div className="container mx-auto px-4 py-16 md:py-24 flex items-center min-h-[70vh]">
+          <div className="w-full max-w-4xl">
+            <h1 className="text-5xl md:text-6xl font-light tracking-tight mb-6">
+              Stay Ahead on Manufacturing
             </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-2xl">
-              Empowering your potential with cutting-edge solutions and expert guidance.
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl">
+              Dive deep with expert insights on the forces shaping industrial innovation. From advanced manufacturing techniques to AI and automation, hear the latest perspectives from Global Smart Vision experts.
             </p>
-            <Button size="lg" className="text-lg px-8 py-6 font-bold bg-blue-600 hover:bg-blue-700">
-              Book an Appointment
+            <Button 
+              size="lg" 
+              className="text-base px-8 py-4 font-semibold bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Explore Our Solutions
             </Button>
           </div>
-
-          {/* Right Image */}
-          <div>
-            <img 
-              src="https://images.unsplash.com/photo-1641893823219-38b433f736c0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbnVmYWN0dXJlfGVufDB8fDB8fHww" 
-              alt="Manufacturing" 
-              className="w-full h-auto rounded-lg shadow-xl"
-            />
-          </div>
+        </div>
+        
+        {/* Overlaid letters */}
+        <div className="absolute top-0 right-0 text-[200px] md:text-[300px] font-bold opacity-10 text-white select-none pointer-events-none">
+          GSV
         </div>
       </div>
 
@@ -106,7 +111,7 @@ export default async function Home() {
                   <StarIcon className="text-blue-600" size={24} />
                 </div>
                 <CardTitle className="m-0 text-2xl font-bold">
-                  35+ Years Experience
+                  25+ Years Experience
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -125,66 +130,71 @@ export default async function Home() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
         </div>
         
-        <div className="grid grid-cols-3 gap-8">
-          {/* Stamping Service */}
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="mb-4">
-              <img 
-                src="/api/placeholder/300/200" 
-                alt="Stamping" 
-                className="mx-auto rounded-lg"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">Stamping</h3>
-            <p className="text-gray-600 mb-6">
-              Precision stamping solutions for your manufacturing needs.
-            </p>
-            <Button variant="outline" className="w-full">
-              Read More
-            </Button>
-          </div>
-
-          {/* Welding Service */}
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="mb-4">
-              <img 
-                src="/api/placeholder/300/200" 
-                alt="Welding" 
-                className="mx-auto rounded-lg"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">Welding</h3>
-            <p className="text-gray-600 mb-6">
-              Advanced welding techniques for superior quality and durability.
-            </p>
-            <Button variant="outline" className="w-full">
-              Read More
-            </Button>
-          </div>
-
-          {/* Training Service */}
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="mb-4">
-              <img 
-                src="/api/placeholder/300/200" 
-                alt="Training" 
-                className="mx-auto rounded-lg"
-              />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">Training</h3>
-            <p className="text-gray-600 mb-6">
-              Comprehensive training programs to enhance your skills.
-            </p>
-            <Button variant="outline" className="w-full">
-              Read More
-            </Button>
-          </div>
-        </div>
+        <Carousel 
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {[
+              {
+                title: "Stamping",
+                description: "Precision stamping solutions for your manufacturing needs.",
+                imageUrl: "https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Welding",
+                description: "Advanced welding techniques for superior quality and durability.",
+                imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Training",
+                description: "Comprehensive training programs to enhance your skills.",
+                imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Design",
+                description: "Innovative design solutions tailored to your specific requirements.",
+                imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Consulting",
+                description: "Expert consulting to optimize your manufacturing processes.",
+                imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=900&auto=format&fit=crop&q=60"
+              }
+            ].map((service, index) => (
+              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <Card className="h-full">
+                  <div className="h-64 overflow-hidden">
+                    <img 
+                      src={service.imageUrl} 
+                      alt={service.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
+                    <p className="text-gray-600 mb-6">
+                      {service.description}
+                    </p>
+                    <Button variant="outline" className="w-full">
+                      Read More
+                    </Button>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
 
         {/* Collaborative Section */}
         <div className="mt-16 bg-gray-50 rounded-lg p-8 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Let's discuss about how we can help make your business better
+            Let's discuss how we can help make your business better
           </h3>
           <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
             Let's Work Together
