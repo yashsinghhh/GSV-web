@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 @layer base {
   :root {
 
@@ -110,7 +109,6 @@
 }
 
 
-
 @layer base {
   * {
     @apply border-border;
@@ -118,4 +116,29 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Add smooth scrolling for the entire site */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Additional smooth scrolling utility classes */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Add transitions for navigation links */
+.nav-link {
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+}
+
+/* Optional: Add active state styles for navigation */
+.nav-link.active {
+  color: #2563eb; /* blue-600 */
+  font-weight: 500;
 }

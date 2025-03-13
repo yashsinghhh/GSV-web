@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,11 +11,12 @@ import {
   CarouselPrevious 
 } from "@/components/ui/carousel";
 import { UserButton, SignInButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
 import { CheckCircle, StarIcon, PhoneIcon } from "lucide-react";
+import { Link as ScrollLink } from "react-scroll";
+import { useAuth } from "@clerk/nextjs";
 
-export default async function Home() {
-  const { userId } = await auth();
+export default function Home() {
+  const { userId } = useAuth();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,12 +29,76 @@ export default async function Home() {
           </div>
           
           <div className="flex items-center space-x-6">
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">Home</a>
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">About Us</a>
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">Portfolio</a>
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">Services</a>
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">Training</a>
-            <a href="#" className="text-gray-800 hover:text-blue-600 transition-colors">Products</a>
+            <ScrollLink 
+              to="home" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Home
+            </ScrollLink>
+            <ScrollLink 
+              to="about" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              About Us
+            </ScrollLink>
+            <ScrollLink 
+              to="portfolio" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Portfolio
+            </ScrollLink>
+            <ScrollLink 
+              to="services" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Services
+            </ScrollLink>
+            <ScrollLink 
+              to="training" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Training
+            </ScrollLink>
+            <ScrollLink 
+              to="products" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Products
+            </ScrollLink>
+            <ScrollLink 
+              to="benefits" 
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              offset={-80}
+              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Benefits
+            </ScrollLink>
             
             {userId ? (
               <UserButton afterSignOutUrl="/"/>
@@ -45,7 +112,7 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative bg-black text-white">
+      <div id="home" className="relative bg-black text-white">
         <div className="container mx-auto px-4 py-16 md:py-24 flex items-center min-h-[70vh]">
           <div className="w-full max-w-4xl">
             <h1 className="text-5xl md:text-6xl font-light tracking-tight mb-6">
@@ -57,6 +124,10 @@ export default async function Home() {
             <Button 
               size="lg" 
               className="text-base px-8 py-4 font-semibold bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={() => {
+                const servicesSection = document.getElementById('services');
+                servicesSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Explore Our Solutions
             </Button>
@@ -70,8 +141,8 @@ export default async function Home() {
       </div>
 
       {/* Solutions Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-2 gap-12 items-center">
+      <div id="about" className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div>
@@ -124,8 +195,30 @@ export default async function Home() {
         </div>
       </div>
 
+      {/* Portfolio Section - Added placeholder */}
+      <div id="portfolio" className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Portfolio</h2>
+          <p className="text-gray-600 text-center mb-12">
+            Explore our past projects and success stories
+          </p>
+          {/* Portfolio content would go here */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((item) => (
+              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="h-48 bg-gray-200"></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Project {item}</h3>
+                  <p className="text-gray-600">Description for project {item}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Services Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div id="services" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
         </div>
@@ -202,109 +295,130 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Benefits Section */}
-      <div className="container mx-auto px-4 py-16 space-y-16">
-        {/* First Card */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="p-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Benefits</h2>
-            
-            <div className="grid grid-cols-3 gap-8 mb-12">
-              {[
-                "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1517048676732-d65bc9c4233c?w=900&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1460925895917-9fdaeffb8def?w=900&auto=format&fit=crop&q=60"
-              ].map((imageUrl, index) => (
-                <div key={index} className="bg-gray-100 rounded-lg overflow-hidden">
-                  <img 
-                    src={imageUrl} 
-                    alt={`Benefit ${index + 1}`} 
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-4">
-                    <p className="text-gray-600">
-                      Benefit {index + 1} description goes here. Short and compelling text about the benefit.
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Video and Appointment Section */}
-            <div className="grid grid-cols-2 gap-8">
-              <div className="bg-gray-100 rounded-lg h-96 flex items-center justify-center relative overflow-hidden">
-                <span className="text-2xl font-bold text-gray-700">VIDEO</span>
+      {/* Training Section - Added placeholder */}
+      <div id="training" className="bg-blue-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Training Programs</h2>
+          <p className="text-gray-600 text-center mb-12">
+            Enhance your skills with our specialized training programs
+          </p>
+          {/* Training content would go here */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[1, 2].map((item) => (
+              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                <h3 className="text-xl font-bold mb-4">Training Program {item}</h3>
+                <p className="text-gray-600 mb-4">Description for training program {item}</p>
+                <Button variant="outline">Learn More</Button>
               </div>
-              
-              <div className="flex items-center justify-center">
-                <Button 
-                  size="lg" 
-                  className="w-full max-w-md bg-blue-600 hover:bg-blue-700 text-white text-xl py-6"
-                >
-                  Book an Appointment
-                </Button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Second Card */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-2 p-8 gap-8">
-            {/* Left Side - Images */}
-            <div className="space-y-8">
-              <div className="bg-gray-100 rounded-lg overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a8?w=900&auto=format&fit=crop&q=60" 
-                  alt="Main Image" 
-                  className="w-full h-96 object-cover"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-8">
-                {[
-                  "https://images.unsplash.com/photo-1573496359119-9a0e9dbcs94?w=900&auto=format&fit=crop&q=60",
-                  "https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&auto=format&fit=crop&q=60"
-                ].map((imageUrl, index) => (
-                  <div key={index} className="bg-gray-100 rounded-lg overflow-hidden">
-                    <img 
-                      src={imageUrl} 
-                      alt={`Secondary Image ${index + 1}`} 
-                      className="w-full h-48 object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Side - Text and Features */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                  Most Reliable Efficient Consultancy Agency
-                </h3>
-                
-                <div className="space-y-4 mb-8">
-                  {[
-                    "Fast Growing",
-                    "Expert Planners",
-                    "Quality Service",
-                    "Quality Products"
-                  ].map((benefit, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="text-blue-600" />
-                      <span className="text-gray-800 text-lg">{benefit}</span>
-                    </div>
-                  ))}
+      {/* Products Section - Added placeholder */}
+      <div id="products" className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Products</h2>
+          <p className="text-gray-600 text-center mb-12">
+            Discover our innovative products designed for your business needs
+          </p>
+          {/* Products content would go here */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="h-40 bg-gray-200"></div>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2">Product {item}</h3>
+                  <p className="text-gray-600 text-sm mb-3">Description for product {item}</p>
+                  <Button variant="outline" size="sm" className="w-full">View Details</Button>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-              {/* Boost Your Business Section */}
-              <div className="flex items-center space-x-3 bg-blue-50 p-4 rounded-lg">
-                <PhoneIcon className="text-blue-600" size={24} />
-                <span className="text-blue-800 text-xl font-semibold">
-                  Boost Your Business
-                </span>
+      {/* Benefits Section */}
+      <div id="benefits" className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">Why Choose Global Smart Vision</h2>
+            <div className="mt-4 h-1 w-24 bg-blue-600 mx-auto"></div>
+            <p className="mt-6 text-lg text-gray-600">
+              We combine industry expertise with cutting-edge technology to deliver exceptional results
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              {
+                title: "Industry Experience",
+                description: "Over 25 years of manufacturing expertise delivering time-tested solutions across multiple industries.",
+                icon: "🏭",
+                imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Innovative Technology",
+                description: "Leveraging the latest advancements in AI and automation to streamline your manufacturing processes.",
+                icon: "💡",
+                imageUrl: "https://images.unsplash.com/photo-1517048676732-d65bc9c4233c?w=900&auto=format&fit=crop&q=60"
+              },
+              {
+                title: "Dedicated Support",
+                description: "Our team of specialists provides ongoing consultation and support to ensure your long-term success.",
+                icon: "🤝",
+                imageUrl: "https://images.unsplash.com/photo-1460925895917-9fdaeffb8def?w=900&auto=format&fit=crop&q=60"
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="group flex flex-col h-full bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-4xl">{benefit.icon}</span>
+                  </div>
+                  <img
+                    src={benefit.imageUrl}
+                    alt={benefit.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 flex-grow flex flex-col">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
+                  <p className="text-gray-600 flex-grow mb-4">
+                    {benefit.description}
+                  </p>
+                  <div className="h-1 w-12 bg-blue-600 transition-all duration-300 group-hover:w-16"></div>
+                </div>
               </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-sm overflow-hidden">
+            <div className="bg-blue-900 text-white p-8 md:p-12 flex flex-col justify-center">
+              <h3 className="text-2xl font-semibold mb-6">See how we transform businesses</h3>
+              <p className="text-blue-100 mb-8">
+                Watch our short video to learn how our solutions have helped manufacturing companies increase efficiency by up to 40% and reduce operational costs.
+              </p>
+              <Button 
+                variant="outline" 
+                className="border-white text-black hover:bg-white hover:text-blue-900 transition-colors w-fit"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mr-2" viewBox="0 0 16 16">
+                  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>
+                Watch Video
+              </Button>
+            </div>
+            <div className="p-8 md:p-12 flex flex-col justify-center">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Ready to optimize your operations?</h3>
+              <p className="text-gray-600 mb-8">
+                Schedule a free consultation with our experts to discover how our solutions can be tailored to your specific manufacturing needs.
+              </p>
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium w-full md:w-auto"
+              >
+                Book Your Consultation
+              </Button>
             </div>
           </div>
         </div>
