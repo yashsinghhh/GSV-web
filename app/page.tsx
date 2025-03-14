@@ -3,12 +3,12 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
 } from "@/components/ui/carousel";
 import { UserButton, SignInButton } from "@clerk/nextjs";
 import { CheckCircle, StarIcon, PhoneIcon } from "lucide-react";
@@ -29,71 +29,41 @@ export default function Home() {
           </div>
           
           <div className="flex items-center space-x-6">
-            <ScrollLink 
-              to="home" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
+            <ScrollLink
+              to="home"
+              spy={true}
+              smooth={true}
+              duration={500}
               offset={-80}
               className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
             >
               Home
             </ScrollLink>
-            <ScrollLink 
-              to="about" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
+            <ScrollLink
+              to="about"
+              spy={true}
+              smooth={true}
+              duration={500}
               offset={-80}
               className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
             >
               About Us
             </ScrollLink>
-            <ScrollLink 
-              to="portfolio" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
-              offset={-80}
-              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Portfolio
-            </ScrollLink>
-            <ScrollLink 
-              to="services" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
+            <ScrollLink
+              to="services"
+              spy={true}
+              smooth={true}
+              duration={500}
               offset={-80}
               className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
             >
               Services
             </ScrollLink>
-            <ScrollLink 
-              to="training" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
-              offset={-80}
-              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Training
-            </ScrollLink>
-            <ScrollLink 
-              to="products" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
-              offset={-80}
-              className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Products
-            </ScrollLink>
-            <ScrollLink 
-              to="benefits" 
-              spy={true} 
-              smooth={true} 
-              duration={500} 
+            <ScrollLink
+              to="benefits"
+              spy={true}
+              smooth={true}
+              duration={500}
               offset={-80}
               className="text-gray-800 hover:text-blue-600 transition-colors cursor-pointer"
             >
@@ -121,8 +91,8 @@ export default function Home() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl">
               Dive deep with expert insights on the forces shaping industrial innovation. From advanced manufacturing techniques to AI and automation, hear the latest perspectives from Global Smart Vision experts.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="text-base px-8 py-4 font-semibold bg-blue-600 hover:bg-blue-700 text-white"
               onClick={() => {
                 const servicesSection = document.getElementById('services');
@@ -169,9 +139,9 @@ export default function Home() {
 
           {/* Right Side - Card and Image */}
           <div className="space-y-8">
-            <img 
-              src="https://images.unsplash.com/photo-1641893823219-38b433f736c0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbnVmYWN0dXJlfGVufDB8fDB8fHww" 
-              alt="Manufacturing" 
+            <img
+              src="https://images.unsplash.com/photo-1641893823219-38b433f736c0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbnVmYWN0dXJlfGVufDB8fDB8fHww"
+              alt="Manufacturing"
               className="w-full h-auto rounded-lg shadow-xl"
             />
             
@@ -195,35 +165,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Portfolio Section - Added placeholder */}
-      <div id="portfolio" className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Portfolio</h2>
-          <p className="text-gray-600 text-center mb-12">
-            Explore our past projects and success stories
-          </p>
-          {/* Portfolio content would go here */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="h-48 bg-gray-200"></div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">Project {item}</h3>
-                  <p className="text-gray-600">Description for project {item}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Services Section */}
       <div id="services" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
         </div>
         
-        <Carousel 
+        <Carousel
           opts={{
             align: "start",
             loop: true,
@@ -261,9 +209,9 @@ export default function Home() {
               <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <Card className="h-full">
                   <div className="h-64 overflow-hidden">
-                    <img 
-                      src={service.imageUrl} 
-                      alt={service.title} 
+                    <img
+                      src={service.imageUrl}
+                      alt={service.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -292,49 +240,6 @@ export default function Home() {
           <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
             Let's Work Together
           </Button>
-        </div>
-      </div>
-
-      {/* Training Section - Added placeholder */}
-      <div id="training" className="bg-blue-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Training Programs</h2>
-          <p className="text-gray-600 text-center mb-12">
-            Enhance your skills with our specialized training programs
-          </p>
-          {/* Training content would go here */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2].map((item) => (
-              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                <h3 className="text-xl font-bold mb-4">Training Program {item}</h3>
-                <p className="text-gray-600 mb-4">Description for training program {item}</p>
-                <Button variant="outline">Learn More</Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Products Section - Added placeholder */}
-      <div id="products" className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Products</h2>
-          <p className="text-gray-600 text-center mb-12">
-            Discover our innovative products designed for your business needs
-          </p>
-          {/* Products content would go here */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="h-40 bg-gray-200"></div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2">Product {item}</h3>
-                  <p className="text-gray-600 text-sm mb-3">Description for product {item}</p>
-                  <Button variant="outline" size="sm" className="w-full">View Details</Button>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -398,9 +303,9 @@ export default function Home() {
               <p className="text-blue-100 mb-8">
                 Watch our short video to learn how our solutions have helped manufacturing companies increase efficiency by up to 40% and reduce operational costs.
               </p>
-              <Button 
-                variant="outline" 
-                className="border-white text-black hover:bg-white hover:text-blue-900 transition-colors w-fit"
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-900 transition-colors w-fit"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mr-2" viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
@@ -413,8 +318,8 @@ export default function Home() {
               <p className="text-gray-600 mb-8">
                 Schedule a free consultation with our experts to discover how our solutions can be tailored to your specific manufacturing needs.
               </p>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-medium w-full md:w-auto"
               >
                 Book Your Consultation
